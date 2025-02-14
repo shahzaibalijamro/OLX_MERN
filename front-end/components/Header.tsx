@@ -10,11 +10,13 @@ import SearchIcon from "../assets/SearchIcon"
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { InstallBanner } from "./InstallBanner"
+import MobileNavigationMenu from "./MobileNavigationMenu"
 
 const Header = () => {
     const [width, setWidth] = useState<number>(0);
     const [inputLocation, setInputLocation] = useState("Pakistan")
     const [isActive, setIsActive] = useState<boolean>(false);
+    const [isHamburgerClicked,setIsHamburgerClicked] = useState(false);
     const [isMobileActive, setIsMobileActive] = useState<boolean>(false);
     const [showSuggestion,setShowSuggestion] = useState<boolean>(false)
     const dropdownRef = useRef<HTMLDivElement>(null);
@@ -66,8 +68,8 @@ const Header = () => {
                     <button>close</button>
                 </form>
             </dialog>
-            <div className="flex items-center justify-start pt-[16px] pb-[6px]">
-                <Image alt="hamburger" src={Hamburger} className="hamburger" />
+            <div className="flex relative items-center justify-start pt-[16px] pb-[6px]">
+                <Image alt="hamburger" onClick={() => setIsHamburgerClicked(!isHamburgerClicked)} src={Hamburger} className="hamburger" />
                 <div className="Logo">
                     <Logo height={width > 820 ? 32 : 24} />
                 </div>
@@ -101,6 +103,7 @@ const Header = () => {
                     </div>
                     <h1 className="text-inherit roboto-bold leading-8">Property</h1>
                 </div>
+                {isHamburgerClicked && <MobileNavigationMenu isOpen={isHamburgerClicked}/>}
             </div>
             {/* PC Section */}
             <div className="pt-[10px] headerPC pb-[16px]">
