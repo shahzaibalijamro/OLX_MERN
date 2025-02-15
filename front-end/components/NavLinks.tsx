@@ -1,6 +1,6 @@
 "use client"
 import DropdownIcon from '@/assets/DropdownIcon';
-import CategoryModal from './categoriesModal';
+import CategoryModal from './CategoriesModal';
 import React, { useEffect, useRef, useState } from 'react'
 
 const NavLinks = () => {

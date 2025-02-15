@@ -11,9 +11,11 @@ import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { InstallBanner } from "./InstallBanner"
 import MobileNavigationMenu from "./MobileNavigationMenu"
+import LoginModal from "./loginModal"
 
 const Header = () => {
     const [width, setWidth] = useState<number>(0);
+    const [isLoginModalOpen,setIsLoginModalOpen] = useState(true);
     const [inputLocation, setInputLocation] = useState("Pakistan")
     const [isActive, setIsActive] = useState<boolean>(false);
     const [isHamburgerClicked,setIsHamburgerClicked] = useState(false);
@@ -281,6 +283,7 @@ const Header = () => {
             </div>
             </div>
         </div>
+        {isLoginModalOpen && <LoginModal/>}
         </>
     )
 }

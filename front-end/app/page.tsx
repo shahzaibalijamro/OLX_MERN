@@ -3,7 +3,7 @@ import DropdownIcon from "../assets/DropdownIcon"
 import LocationIcon from "../assets/LocationIcon";
 import Card from "../components/Card"
 import Carousel from "../components/Carousel";
-import CategoryModal from "../components/categoriesModal"
+import CategoryModal from "../components/CategoriesModal"
 import { SimpleCarousel } from "../components/SimpleCorousel";
 import { useEffect, useRef, useState } from "react";
 import { ScrollArea, ScrollBar } from "../components/ui/scroll-area";
