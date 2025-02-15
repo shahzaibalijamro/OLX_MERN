@@ -203,8 +203,7 @@ body {
 .modal-box {
   background: #fff;
   width: 400px;
-  height: 550px;
-  padding: 20px;
+  height: fit-content;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   text-align: center;

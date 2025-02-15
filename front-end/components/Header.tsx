@@ -11,11 +11,11 @@ import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { InstallBanner } from "./InstallBanner"
 import MobileNavigationMenu from "./MobileNavigationMenu"
-import LoginModal from "./loginModal"
+import LoginModal from "./LoginModal"
 
 const Header = () => {
     const [width, setWidth] = useState<number>(0);
-    const [isLoginModalOpen,setIsLoginModalOpen] = useState(true);
+    const [isLoginModalOpen,setIsLoginModalOpen] = useState(false);
     const [inputLocation, setInputLocation] = useState("Pakistan")
     const [isActive, setIsActive] = useState<boolean>(false);
     const [isHamburgerClicked,setIsHamburgerClicked] = useState(false);
@@ -177,7 +177,7 @@ const Header = () => {
                     </div>
                     <div className="flex ms-[32px] justify-start items-center gap-x-[20px]">
                         <div>
-                            <div onClick={() => openModal()} className="border-b-2 hover:border-[#ffffff] cursor-pointer border-[#002f34]">
+                            <div onClick={() => setIsLoginModalOpen(true)} className="border-b-2 hover:border-[#ffffff] cursor-pointer border-[#002f34]">
                                 <h1 className="text-[#002f34] roboto-bold">Login</h1>
                             </div>
                         </div>
@@ -283,7 +283,7 @@ const Header = () => {
             </div>
             </div>
         </div>
-        {isLoginModalOpen && <LoginModal/>}
+        {isLoginModalOpen && <LoginModal setIsLoginModalOpen={setIsLoginModalOpen}/>}
         </>
     )
 }
