@@ -68,7 +68,7 @@ const Header = () => {
                     <button>close</button>
                 </form>
             </dialog>
-            <div className="flex relative items-center justify-start pt-[16px] pb-[6px]">
+            <div className="flex items-center justify-start pt-[16px] pb-[6px]">
                 <Image alt="hamburger" onClick={() => setIsHamburgerClicked(!isHamburgerClicked)} src={Hamburger} className="hamburger" />
                 <div className="Logo">
                     <Logo height={width > 820 ? 32 : 24} />
