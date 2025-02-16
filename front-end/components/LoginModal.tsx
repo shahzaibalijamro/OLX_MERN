@@ -39,7 +39,7 @@ const LoginModal = ({ setIsLoginModalOpen, setIsRegisterOpen }: LoginModalProps)
                             OR
                         </div>
                         <button className="w-full rounded-sm h-12 px-[10px] flex justify-center items-center cursor-pointer border-[2px] border-[#002f34] text-[#002f34] font-bold max-h-full">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" className='me-2'><path fill="currentColor" fill-rule="evenodd" d="M4 18V7.41l6.88 6.88h2.24L20 7.42V18H4zM18.59 6l-6.3 6.3h-.58L5.4 6H18.6zM21 4H3L2 5v14l1 1h18l1-1V5l-1-1z" clip-rule="evenodd"></path></svg>Login with Email
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" className='me-2'><path fill="currentColor" fillRule="evenodd" d="M4 18V7.41l6.88 6.88h2.24L20 7.42V18H4zM18.59 6l-6.3 6.3h-.58L5.4 6H18.6zM21 4H3L2 5v14l1 1h18l1-1V5l-1-1z" clipRule="evenodd"></path></svg>Login with Email
                         </button>
                     </div>
                     <div className='mt-8'>

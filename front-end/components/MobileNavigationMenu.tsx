@@ -16,11 +16,11 @@ const MobileNavigationMenu = ({ isOpen,isRegisterOpen,setIsLoginModalOpen,setIsR
   }
   return (
     <motion.div
-      initial={{ height: "fit-content", y: -10 }}
-      animate={isOpen ? { height: "calc(100vh - 4rem)", y: 0 } : { height: "fit-content", y: -10 }}
-      exit={{ height: "fit-content", y: -10 }}
+      initial={{ height: "700px", y: -10 }}
+      animate={isOpen ? { height: "calc(100vh - 4rem)", y: 0 } : { height: "700px", y: -10 }}
+      exit={{ height: "700px", y: -10 }}
       transition={{ duration: 0.4, ease: "easeInOut" }}
-      className="w-full mobileNavigationMenu absolute z-10 top-16 left-0 right-0 bg-white"
+      className="w-full mobileNavigationMenu absolute z-[51] top-16 left-0 right-0 bg-white"
     >
       <div className="flex border-b-[1px] border-[#ced6d7] p-4 w-full justify-start items-center h-fit">
         <div>
