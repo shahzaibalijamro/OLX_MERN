@@ -4,9 +4,12 @@ import Image from "next/image";
 
 interface MobileNavigationMenuProps {
   isOpen: boolean;
+  isRegisterOpen: boolean;
+  setIsLoginModalOpen: (value:boolean) => void;
+  setIsRegisterOpen: (value:boolean) => void;
 }
 
-const MobileNavigationMenu = ({ isOpen }: MobileNavigationMenuProps) => {
+const MobileNavigationMenu = ({ isOpen,isRegisterOpen,setIsLoginModalOpen,setIsRegisterOpen }: MobileNavigationMenuProps) => {
   return (
     <motion.div
       initial={{ height: "fit-content", y: -10 }}
@@ -77,12 +80,12 @@ const MobileNavigationMenu = ({ isOpen }: MobileNavigationMenuProps) => {
         </div>
       </div>
       <div className="px-[8px] py-[16px]">
-        <button className="w-full rounded-sm h-12 px-[10px] flex justify-center items-center cursor-pointer bg-[#002f34] font-bold text-white max-h-full">
+        <button onClick={() => setIsLoginModalOpen(true)} className="w-full rounded-sm h-12 px-[10px] flex justify-center items-center cursor-pointer bg-[#002f34] font-bold text-white max-h-full">
           Login
         </button>
       </div>
       <div className="px-[8px] pb-[16px]">
-        <button className="w-full rounded-sm h-12 px-[10px] flex justify-center items-center cursor-pointer border-[2px] border-[#002f34] text-[#002f34] font-bold max-h-full">
+        <button onClick={() => setIsRegisterOpen(true)} className="w-full rounded-sm h-12 px-[10px] flex justify-center items-center cursor-pointer border-[2px] border-[#002f34] text-[#002f34] font-bold max-h-full">
           Create a new account
         </button>
       </div>

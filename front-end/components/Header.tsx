@@ -12,22 +12,19 @@ import Image from "next/image"
 import { InstallBanner } from "./InstallBanner"
 import MobileNavigationMenu from "./MobileNavigationMenu"
 import LoginModal from "./LoginModal"
+import RegisterModal from "./RegisterModal"
 
 const Header = () => {
     const [width, setWidth] = useState<number>(0);
     const [isLoginModalOpen,setIsLoginModalOpen] = useState(false);
+    const [isRegisterOpen,setIsRegisterOpen] = useState(false);
     const [inputLocation, setInputLocation] = useState("Pakistan")
     const [isActive, setIsActive] = useState<boolean>(false);
     const [isHamburgerClicked,setIsHamburgerClicked] = useState(false);
     const [isMobileActive, setIsMobileActive] = useState<boolean>(false);
     const [showSuggestion,setShowSuggestion] = useState<boolean>(false)
-    const dropdownRef = useRef<HTMLDivElement>(null);
-    const openModal = () => {
-        const modal = document.getElementById('my_modal_2') as HTMLDialogElement;
-        if (modal) {
-            modal.showModal();
-        }
-    };
+    const dropdownRefPC = useRef<HTMLDivElement>(null);
+    const dropdownRefMobile = useRef<HTMLDivElement>(null);
     useEffect(() => {
         const handleResize = () => setWidth(window.innerWidth);
         window.addEventListener("resize", handleResize);
@@ -44,8 +41,8 @@ const Header = () => {
     },[])
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-                setIsActive(false); // Close dropdown if clicked outside
+            if (dropdownRefPC.current && !dropdownRefPC.current.contains(event.target as Node)) {
+                setIsActive(false);
             }
         };
         document.addEventListener("click", handleClickOutside);
@@ -57,19 +54,14 @@ const Header = () => {
         localStorage.setItem("suggestion","true");
         setShowSuggestion(false);
     }
+    const openLocationModal = (e:any) => {
+        e.stopPropagation();
+        setIsActive(!isActive);
+    }
     return (
         <>
         {showSuggestion && <InstallBanner closeAppSuggestion={closeAppSuggestion}/>}
         <div className="myContainer">
-            <dialog id="my_modal_2" className="modal">
-                <div className="modal-box">
-                    <h3 className="font-bold text-lg">Hello!</h3>
-                    <p className="py-4">Press ESC key or click outside to close</p>
-                </div>
-                <form method="dialog" className="modal-backdrop">
-                    <button>close</button>
-                </form>
-            </dialog>
             <div className="flex items-center justify-start pt-[16px] pb-[6px]">
                 <Image alt="hamburger" onClick={() => setIsHamburgerClicked(!isHamburgerClicked)} src={Hamburger} className="hamburger" />
                 <div className="Logo">
@@ -105,7 +97,7 @@ const Header = () => {
                     </div>
                     <h1 className="text-inherit roboto-bold leading-8">Property</h1>
                 </div>
-                {isHamburgerClicked && <MobileNavigationMenu isOpen={isHamburgerClicked}/>}
+                {isHamburgerClicked && <MobileNavigationMenu isRegisterOpen={isRegisterOpen} setIsRegisterOpen={setIsRegisterOpen} isOpen={isHamburgerClicked} setIsLoginModalOpen={setIsLoginModalOpen}/>}
             </div>
             {/* PC Section */}
             <div className="pt-[10px] headerPC pb-[16px]">
@@ -113,12 +105,9 @@ const Header = () => {
                     <div className="max-w-[310px] relative me-[16px] w-full">
                         <div onClick={() => setIsActive(true)} className="w-full px-[10px] py-[12px]  flex justify-start border border-[#d8dfe0] focus-within:border-[#23e5db] focus:border-[#23e5db] rounded">
                             <LocationIcon height={24} width={24} />
-                            <div className="w-full flex" ref={dropdownRef} >
+                            <div className="w-full flex" ref={dropdownRefPC} >
                                 <input type="text" value={inputLocation} onChange={(e) => setInputLocation(e.target.value)} className="ps-[10px] w-full bg-white focus-visible:border-0 focus-visible:outline-0" />
-                                <div onClick={(e) => {
-                                    e.stopPropagation();
-                                    setIsActive(!isActive);
-                                }} className={`me-[5px] dropdown-icon cursor-pointer ${isActive && 'rotate-180'}`}>
+                                <div onClick={openLocationModal} className={`me-[5px] dropdown-icon cursor-pointer ${isActive && 'rotate-180'}`}>
                                     <DropdownIcon height={24} width={24} />
                                 </div>
                             </div>
@@ -199,7 +188,7 @@ const Header = () => {
                     <div className="mx-2">
                         <LocationIcon height={width > 820 ? 24 : 20} width={width > 820 ? 24 : 20} color="#0971c0" />
                     </div>
-                    <div className="flex items-center" ref={dropdownRef} >
+                    <div className="flex items-center" ref={dropdownRefMobile} >
                         <h1>{inputLocation}</h1>
                         <div onClick={(e) => {
                             e.stopPropagation();
@@ -283,7 +272,7 @@ const Header = () => {
             </div>
             </div>
         </div>
-        {isLoginModalOpen && <LoginModal setIsLoginModalOpen={setIsLoginModalOpen}/>}
+        {isLoginModalOpen && <LoginModal setIsRegisterOpen={setIsRegisterOpen} isRegisterOpen={isRegisterOpen} setIsLoginModalOpen={setIsLoginModalOpen}/>}
         </>
     )
 }
