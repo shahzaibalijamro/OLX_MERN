@@ -292,6 +292,15 @@ body {
   .footerPCSection{
     display: none;
   }
+  .modal-box {
+    background: #fff;
+    width: 100%;
+    height: 100vh;
+    border-radius: 0px;
+    box-shadow: 0 0 0 0;
+    text-align: center;
+    position: relative;
+  }
 }
 @media(max-width:710px){
   .categoryContainer > *:nth-last-child(-n+9) {
