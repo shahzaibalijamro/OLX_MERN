@@ -13,6 +13,7 @@ import { InstallBanner } from "./InstallBanner"
 import MobileNavigationMenu from "./MobileNavigationMenu"
 import LoginModal from "./LoginModal"
 import RegisterModal from "./RegisterModal"
+import LoginOrRegisterModal from "./LoginOrRegisterModal"
 
 const Header = () => {
     const [width, setWidth] = useState<number>(0);
@@ -272,7 +273,7 @@ const Header = () => {
             </div>
             </div>
         </div>
-        {isLoginModalOpen && <LoginModal setIsRegisterOpen={setIsRegisterOpen} isRegisterOpen={isRegisterOpen} setIsLoginModalOpen={setIsLoginModalOpen}/>}
+        {isLoginModalOpen && <LoginOrRegisterModal setIsRegisterOpen={setIsRegisterOpen} isRegisterOpen={isRegisterOpen} setIsLoginModalOpen={setIsLoginModalOpen}/>}
         </>
     )
 }
