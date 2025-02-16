@@ -7,6 +7,7 @@ import CategoryModal from "../components/CategoriesModal"
 import { SimpleCarousel } from "../components/SimpleCorousel";
 import { useEffect, useRef, useState } from "react";
 import { ScrollArea, ScrollBar } from "../components/ui/scroll-area";
+import BackToTop from "@/components/BackToTop";
 const page = () => {
   const [isActive, setIsActive] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -96,6 +97,7 @@ const page = () => {
   ];
   return (
     <div className="">
+      <BackToTop/>
       <div className="mt-[10px] carouselMain">
         <div className="myContainer">
           <SimpleCarousel />
