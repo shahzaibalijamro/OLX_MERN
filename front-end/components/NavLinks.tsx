@@ -23,8 +23,7 @@ const NavLinks = () => {
                 <div className="flex relative justify-start gap-x-[12px] items-center">
                     <div onClick={() => setIsActive(true)} ref={dropdownRef} className="flex justify-center cursor-pointer items-center">
                         <h1 className="uppercase text-[14px] roboto-bold text-[#002f34]">All Categories</h1>
-                        <div onClick={(e) => {
-                            e.stopPropagation();
+                        <div onClick={() => {
                             setIsActive(!isActive);
                         }} className={`ms-[8px] dropdown-icon cursor-pointer ${isActive && 'rotate-180'}`}>
                             <DropdownIcon height={16} width={16} />

@@ -10,25 +10,26 @@ import { ScrollArea, ScrollBar } from "../components/ui/scroll-area";
 import BackToTop from "@/components/BackToTop";
 const page = () => {
   const [isActive, setIsActive] = useState<boolean>(false);
+  const [scrollPosition, setSrollPosition] = useState<number>(0);
+  const [showGoTop, setshowGoTop] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const openModal = () => {
-    const modal = document.getElementById('my_modal_2') as HTMLDialogElement;
-    if (modal) {
-      modal.showModal();
-    }
-  };
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsActive(false);
       }
     };
-
     document.addEventListener("click", handleClickOutside);
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
+  useEffect(() => {
+    document.addEventListener("scroll", handleVisibleButton);
+    return () => {
+      document.removeEventListener("scroll", handleVisibleButton);
+    };
+  },[]);
   const products = [
     {
       id: 1,
@@ -36,7 +37,7 @@ const page = () => {
       title: "Mobile Phone",
       address: "7th Avenue, Islamabad",
       time: "1 day ago",
-      imageUrl: "https://images.olx.com.pk/thumbnails/505175755-240x180.webp",
+      imageUrl: "https://images.olx.com.pk/thumbnails/520529448-240x180.webp",
     },
     {
       id: 2,
@@ -44,7 +45,7 @@ const page = () => {
       title: "Used Car",
       address: "Gulshan-e-Iqbal, Karachi",
       time: "2 hours ago",
-      imageUrl: "https://images.olx.com.pk/thumbnails/505175756-240x180.webp",
+      imageUrl: "https://images.olx.com.pk/thumbnails/520529449-240x180.webp",
     },
     {
       id: 3,
@@ -52,7 +53,7 @@ const page = () => {
       title: "Office Chair",
       address: "Johar Town, Lahore",
       time: "3 days ago",
-      imageUrl: "https://images.olx.com.pk/thumbnails/505175757-240x180.webp",
+      imageUrl: "https://images.olx.com.pk/thumbnails/520529450-240x180.webp",
     },
     {
       id: 4,
@@ -60,7 +61,7 @@ const page = () => {
       title: "Gaming Console",
       address: "F-11, Islamabad",
       time: "5 hours ago",
-      imageUrl: "https://images.olx.com.pk/thumbnails/505175758-240x180.webp",
+      imageUrl: "https://images.olx.com.pk/thumbnails/520529451-240x180.webp",
     },
     {
       id: 5,
@@ -68,7 +69,7 @@ const page = () => {
       title: "Wrist Watch",
       address: "Clifton, Karachi",
       time: "10 minutes ago",
-      imageUrl: "https://images.olx.com.pk/thumbnails/505175759-240x180.webp",
+      imageUrl: "https://images.olx.com.pk/thumbnails/520529452-240x180.webp",
     },
     {
       id: 6,
@@ -76,7 +77,7 @@ const page = () => {
       title: "Laptop Bag",
       address: "Model Town, Lahore",
       time: "2 days ago",
-      imageUrl: "https://images.olx.com.pk/thumbnails/505175760-240x180.webp",
+      imageUrl: "https://images.olx.com.pk/thumbnails/520529453-240x180.webp",
     },
     {
       id: 7,
@@ -84,7 +85,7 @@ const page = () => {
       title: "Motorbike",
       address: "Shahra-e-Faisal, Karachi",
       time: "4 hours ago",
-      imageUrl: "https://images.olx.com.pk/thumbnails/505175761-240x180.webp",
+      imageUrl: "https://images.olx.com.pk/thumbnails/520529454-240x180.webp",
     },
     {
       id: 8,
@@ -92,12 +93,15 @@ const page = () => {
       title: "Bluetooth Speaker",
       address: "Bahria Town, Islamabad",
       time: "6 hours ago",
-      imageUrl: "https://images.olx.com.pk/thumbnails/505175762-240x180.webp",
+      imageUrl: "https://images.olx.com.pk/thumbnails/520529455-240x180.webp",
     },
   ];
+  const handleVisibleButton = () => {
+    console.log("scrolling");
+  };
   return (
     <div className="">
-      <BackToTop/>
+      <BackToTop />
       <div className="mt-[10px] carouselMain">
         <div className="myContainer">
           <SimpleCarousel />
